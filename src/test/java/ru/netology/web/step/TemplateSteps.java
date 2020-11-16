@@ -12,22 +12,22 @@ import static com.codeborne.selenide.Selenide.page;
 import static ru.alfabank.tests.core.helpers.PropertyLoader.loadProperty;
 
 public class TemplateSteps {
-  private final AkitaScenario scenario = AkitaScenario.getInstance();
+    private final AkitaScenario scenario = AkitaScenario.getInstance();
 
-  @Пусть("^пользователь залогинен с именем \"([^\"]*)\" и паролем \"([^\"]*)\"$")
-  public void loginWithNameAndPassword(String login, String password) {
-    val loginUrl = loadProperty("loginUrl");
-    open(loginUrl);
+    @Пусть("^пользователь залогинен с именем \"([^\"]*)\" и паролем \"([^\"]*)\";$")
+    public void loginWithNameAndPassword(String login, String password) {
+        val loginUrl = loadProperty("loginUrl");
+        open(loginUrl);
 
-    scenario.setCurrentPage(page(LoginPage.class));
-    val loginPage = (LoginPage) scenario.getCurrentPage().appeared();
-    val authInfo = new DataHelper.AuthInfo(login, password);
-    scenario.setCurrentPage(loginPage.validLogin(authInfo));
+        scenario.setCurrentPage(page(LoginPage.class));
+        val loginPage = (LoginPage) scenario.getCurrentPage().appeared();
+        val authInfo = new DataHelper.AuthInfo(login, password);
+        scenario.setCurrentPage(loginPage.validLogin(authInfo));
 
-    val verificationPage = (VerificationPage) scenario.getCurrentPage().appeared();
-    val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
-    scenario.setCurrentPage(verificationPage.validVerify(verificationCode));
+        val verificationPage = (VerificationPage) scenario.getCurrentPage().appeared();
+        val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
+        scenario.setCurrentPage(verificationPage.validVerify(verificationCode));
 
-    scenario.getCurrentPage().appeared();
-  }
+        scenario.getCurrentPage().appeared();
+    }
 }

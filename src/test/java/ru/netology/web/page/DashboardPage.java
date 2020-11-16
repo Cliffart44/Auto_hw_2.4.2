@@ -7,6 +7,6 @@ import ru.alfabank.alfatest.cucumber.api.AkitaPage;
 
 @Name("Дашбоард")
 public class DashboardPage extends AkitaPage {
-  @FindBy(css = "[data-test-id=dashboard]")
-  private SelenideElement heading;
+    @FindBy(css = "[data-test-id=dashboard]")
+    private SelenideElement heading;
 }
