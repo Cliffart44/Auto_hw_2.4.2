@@ -2,9 +2,12 @@ package ru.netology.web.page;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.google.common.base.CharMatcher;
 import org.openqa.selenium.support.FindBy;
 import ru.alfabank.alfatest.cucumber.annotations.Name;
 import ru.alfabank.alfatest.cucumber.api.AkitaPage;
+
+import static com.codeborne.selenide.Selenide.$;
 
 @Name("Дашбоард")
 public class DashboardPage extends AkitaPage {
@@ -15,13 +18,23 @@ public class DashboardPage extends AkitaPage {
     @FindBy(css = "[data-test-id='0f3f5c2a-249e-4c3d-8287-09f7a039391d'] .button__text")
     private SelenideElement addFundsCard2Button;
 
-    public TransferPage moneyTransfer(boolean toCardOne) {
-        if (toCardOne) addFundsCard1Button.click();
-        else addFundsCard2Button.click();
+    public TransferPage moneyTransferToCardOne() {
+        addFundsCard1Button.click();
         return Selenide.page(TransferPage.class);
     }
 
-//    public void moneyTransferToCardTwo() {
+    public String getCardOneBalance() {
+        String tmp = $("[data-test-id='92df3f1c-a033-48e6-8390-206f6b1f56c0']").getOwnText().substring(20);
+        return (CharMatcher.inRange('0', '9').retainFrom(tmp));
+    }
+//
+//    public TransferPage moneyTransferToCardTwo() {
 //        addFundsCard2Button.click();
+//        return Selenide.page(TransferPage.class);
+//    }
+//
+//    public String getCardTwoBalance() {
+//        String tmp = $("[data-test-id='0f3f5c2a-249e-4c3d-8287-09f7a039391d']").getOwnText().substring(20);
+//        return (CharMatcher.inRange('0', '9').retainFrom(tmp));
 //    }
 }
