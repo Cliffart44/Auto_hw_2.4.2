@@ -28,4 +28,12 @@ public class DataHelper {
     public static VerificationCode getVerificationCodeFor(AuthInfo authInfo) {
         return new VerificationCode("12345");
     }
+
+    public static String cardNumber(int item) {
+        String[] cards = {" ", "5559000000000001", "5559000000000002"};
+        if (item >= 1 && item <= 2) {
+            return cards[item];
+        }
+        return null;
+    }
 }
