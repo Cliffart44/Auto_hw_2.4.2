@@ -19,8 +19,8 @@ public class TransferPage extends AkitaPage {
     private SelenideElement cancelButton;
 
     public DashboardPage transaction(String value, String source) {
-        totField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE, value);
-        sourceCardField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE, source);
+        totField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE, value.trim());
+        sourceCardField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE, source.trim());
         addFundsButton.click();
         return Selenide.page(DashboardPage.class);
     }
